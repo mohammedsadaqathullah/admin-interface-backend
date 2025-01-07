@@ -127,7 +127,6 @@ const defaultUsers = [
         "__v": 0,
         "jobs": []
     }
-    // Add other user objects here
 ];
 
 // Load Default Data into MongoDB
@@ -162,3 +161,33 @@ app.get('/users', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch users', details: error.message });
     }
 });
+
+// POST Endpoint to Add New User
+app.post('/users', async (req, res) => {
+    const { _id, profile, jobRole, experience, workLocation, salaryLPA, descriptionOne, descriptionTwo, jobs } = req.body;
+
+    if (!_id || !profile || !jobRole || !experience || !workLocation || !salaryLPA || !descriptionOne || !descriptionTwo) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    try {
+        const newUser = new User({
+            _id,
+            profile,
+            jobRole,
+            experience,
+            workLocation,
+            salaryLPA,
+            descriptionOne,
+            descriptionTwo,
+            jobs
+        });
+
+        await newUser.save();
+        res.status(201).json({ message: 'User added successfully', user: newUser });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to add user', details: error.message });
+    }
+});
+
+
