@@ -33,7 +33,7 @@ const User = mongoose.model('User', userSchema);
 const defaultUsers = [
     {
         "_id": "677ad7cef5e186356ad5672c",
-        "profile": "http://localhost:5000/profile1.png",
+        "profile": "https://drive.google.com/uc?export=view&id=1pkzUPGCjXXHLNvV2mgdSt8ACRr7kNPfU",
         "jobRole": "Full Stack Developer",
         "experience": "1-3 yr Exp",
         "workLocation": "Onsite",
