@@ -162,12 +162,15 @@ app.get('/users', async (req, res) => {
     }
 });
 
-// POST Endpoint to Add New User
 app.post('/users', async (req, res) => {
     const { _id, profile, jobRole, experience, workLocation, salaryLPA, descriptionOne, descriptionTwo, jobs } = req.body;
 
+    // Log the request body for debugging purposes
+    console.log(req.body);
+
+    // Check if required fields are missing
     if (!_id || !profile || !jobRole || !experience || !workLocation || !salaryLPA || !descriptionOne || !descriptionTwo) {
-        return res.status(400).json({ error: 'Missing required fields' });
+        return res.status(400).json({ error: 'Missing required fields', details: req.body });
     }
 
     try {
@@ -186,8 +189,23 @@ app.post('/users', async (req, res) => {
         await newUser.save();
         res.status(201).json({ message: 'User added successfully', user: newUser });
     } catch (error) {
+        console.error('Error saving user:', error);  // Log the error
         res.status(500).json({ error: 'Failed to add user', details: error.message });
     }
 });
+// Express and Mongoose setup...
+app.delete('/users/:id', async (req, res) => {
+    const { id } = req.params;
 
+    try {
+        const deletedUser = await User.findByIdAndDelete(id);
 
+        if (!deletedUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'User deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete user', details: error.message });
+    }
+});
