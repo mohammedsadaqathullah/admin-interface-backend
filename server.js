@@ -33,7 +33,7 @@ const User = mongoose.model('User', userSchema);
 const defaultUsers = [
     {
         "_id": "677ad7cef5e186356ad5672c",
-        "profile": "https://i.postimg.cc/gkgH6wxk/amazon.jpg",
+        "profile": "https://i.postimg.cc/hP5pL48n/amazonlogo.png",
         "jobRole": "Full Stack Developer",
         "experience": "1-3 yr Exp",
         "workLocation": "Onsite",
@@ -45,7 +45,7 @@ const defaultUsers = [
     },
     {
         "_id": "677ad7cef5e186356ad5672d",
-        "profile": "https://i.postimg.cc/P5cb2Bbg/third.jpg",
+        "profile": "https://i.postimg.cc/Yq9dLLW8/teslalogo.png",
         "jobRole": "Node Js Developer",
         "experience": "1-3 yr Exp",
         "workLocation": "Onsite",
@@ -57,7 +57,7 @@ const defaultUsers = [
     },
     {
         "_id": "677ad7cef5e186356ad5672e",
-        "profile": "https://i.postimg.cc/7ZbM1xz1/swiggy.jpg",
+        "profile": "https://i.postimg.cc/bYL6v9ss/swiggylogo.png",
         "jobRole": "UX/UI Designer",
         "experience": "1-3 yr Exp",
         "workLocation": "Onsite",
@@ -69,7 +69,7 @@ const defaultUsers = [
     },
     {
         "_id": "677ad7cef5e186356ad5672f",
-        "profile": "https://i.postimg.cc/gkgH6wxk/amazon.jpg",
+        "profile": "https://i.postimg.cc/hP5pL48n/amazonlogo.png",
         "jobRole": "Full Stack Developer",
         "experience": "1-3 yr Exp",
         "workLocation": "Onsite",
@@ -81,7 +81,7 @@ const defaultUsers = [
     },
     {
         "_id": "677ad7cef5e186356ad56730",
-        "profile": "https://i.postimg.cc/P5cb2Bbg/third.jpg",
+        "profile": "https://i.postimg.cc/Yq9dLLW8/teslalogo.png",
         "jobRole": "Node Js Developer",
         "experience": "1-3 yr Exp",
         "workLocation": "Onsite",
@@ -93,7 +93,7 @@ const defaultUsers = [
     },
     {
         "_id": "677ad7cef5e186356ad56731",
-        "profile": "https://i.postimg.cc/7ZbM1xz1/swiggy.jpg",
+        "profile": "https://i.postimg.cc/bYL6v9ss/swiggylogo.png",
         "jobRole": "UX/UI Designer",
         "experience": "1-3 yr Exp",
         "workLocation": "Onsite",
@@ -105,7 +105,7 @@ const defaultUsers = [
     },
     {
         "_id": "677ad7cef5e186356ad56732",
-        "profile": "https://i.postimg.cc/gkgH6wxk/amazon.jpg",
+        "profile": "https://i.postimg.cc/hP5pL48n/amazonlogo.png",
         "jobRole": "Full Stack Developer",
         "experience": "1-3 yr Exp",
         "workLocation": "Onsite",
@@ -117,7 +117,7 @@ const defaultUsers = [
     },
     {
         "_id": "677ad7cef5e186356ad56733",
-        "profile": "https://i.postimg.cc/P5cb2Bbg/third.jpg",
+        "profile": "https://i.postimg.cc/Yq9dLLW8/teslalogo.png",
         "jobRole": "Node Js Developer",
         "experience": "1-3 yr Exp",
         "workLocation": "Onsite",
