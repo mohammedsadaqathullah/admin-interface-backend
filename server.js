@@ -55,78 +55,6 @@ const defaultUsers = [
         "__v": 0,
         "jobs": []
     },
-    {
-        "_id": "677ad7cef5e186356ad5672e",
-        "profile": "https://i.postimg.cc/bYL6v9ss/swiggylogo.png",
-        "jobRole": "UX/UI Designer",
-        "experience": "1-3 yr Exp",
-        "workLocation": "Onsite",
-        "salaryLPA": "12LPA",
-        "descriptionOne": "A user-friendly interface lets you browse stunning photos and videos",
-        "descriptionTwo": "Filter destinations based on interests and travel style, and create personalized",
-        "__v": 0,
-        "jobs": []
-    },
-    {
-        "_id": "677ad7cef5e186356ad5672f",
-        "profile": "https://i.postimg.cc/hP5pL48n/amazonlogo.png",
-        "jobRole": "Full Stack Developer",
-        "experience": "1-3 yr Exp",
-        "workLocation": "Onsite",
-        "salaryLPA": "12LPA",
-        "descriptionOne": "A user-friendly interface lets you browse stunning photos and videos",
-        "descriptionTwo": "Filter destinations based on interests and travel style, and create personalized",
-        "__v": 0,
-        "jobs": []
-    },
-    {
-        "_id": "677ad7cef5e186356ad56730",
-        "profile": "https://i.postimg.cc/Yq9dLLW8/teslalogo.png",
-        "jobRole": "Node Js Developer",
-        "experience": "1-3 yr Exp",
-        "workLocation": "Onsite",
-        "salaryLPA": "12LPA",
-        "descriptionOne": "A user-friendly interface lets you browse stunning photos and videos",
-        "descriptionTwo": "Filter destinations based on interests and travel style, and create personalized",
-        "__v": 0,
-        "jobs": []
-    },
-    {
-        "_id": "677ad7cef5e186356ad56731",
-        "profile": "https://i.postimg.cc/bYL6v9ss/swiggylogo.png",
-        "jobRole": "UX/UI Designer",
-        "experience": "1-3 yr Exp",
-        "workLocation": "Onsite",
-        "salaryLPA": "12LPA",
-        "descriptionOne": "A user-friendly interface lets you browse stunning photos and videos",
-        "descriptionTwo": "Filter destinations based on interests and travel style, and create personalized",
-        "__v": 0,
-        "jobs": []
-    },
-    {
-        "_id": "677ad7cef5e186356ad56732",
-        "profile": "https://i.postimg.cc/hP5pL48n/amazonlogo.png",
-        "jobRole": "Full Stack Developer",
-        "experience": "1-3 yr Exp",
-        "workLocation": "Onsite",
-        "salaryLPA": "12LPA",
-        "descriptionOne": "A user-friendly interface lets you browse stunning photos and videos",
-        "descriptionTwo": "Filter destinations based on interests and travel style, and create personalized",
-        "__v": 0,
-        "jobs": []
-    },
-    {
-        "_id": "677ad7cef5e186356ad56733",
-        "profile": "https://i.postimg.cc/Yq9dLLW8/teslalogo.png",
-        "jobRole": "Node Js Developer",
-        "experience": "1-3 yr Exp",
-        "workLocation": "Onsite",
-        "salaryLPA": "12LPA",
-        "descriptionOne": "A user-friendly interface lets you browse stunning photos and videos",
-        "descriptionTwo": "Filter destinations based on interests and travel style, and create personalized",
-        "__v": 0,
-        "jobs": []
-    }
 ];
 
 // Load Default Data into MongoDB
@@ -162,6 +90,7 @@ app.get('/users', async (req, res) => {
     }
 });
 
+// Endpoint to Add a User
 app.post('/users', async (req, res) => {
     const { _id, profile, jobRole, experience, workLocation, salaryLPA, descriptionOne, descriptionTwo, jobs } = req.body;
 
@@ -193,7 +122,45 @@ app.post('/users', async (req, res) => {
         res.status(500).json({ error: 'Failed to add user', details: error.message });
     }
 });
-// Express and Mongoose setup...
+
+// Endpoint to Update User by ID
+app.put('/users/:id', async (req, res) => {
+    const { id } = req.params;
+    const { profile, jobRole, experience, workLocation, salaryLPA, descriptionOne, descriptionTwo, jobs } = req.body;
+
+    try {
+        // Validate input fields
+        if (!profile && !jobRole && !experience && !workLocation && !salaryLPA && !descriptionOne && !descriptionTwo && !jobs) {
+            return res.status(400).json({ error: 'No fields provided for update' });
+        }
+
+        // Find and update the user
+        const updatedUser = await User.findByIdAndUpdate(
+            id,
+            {
+                ...(profile && { profile }),
+                ...(jobRole && { jobRole }),
+                ...(experience && { experience }),
+                ...(workLocation && { workLocation }),
+                ...(salaryLPA && { salaryLPA }),
+                ...(descriptionOne && { descriptionOne }),
+                ...(descriptionTwo && { descriptionTwo }),
+                ...(jobs && { jobs }),
+            },
+            { new: true } // Return the updated document
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'User updated successfully', user: updatedUser });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to update user', details: error.message });
+    }
+});
+
+// Endpoint to Delete User by ID
 app.delete('/users/:id', async (req, res) => {
     const { id } = req.params;
 
