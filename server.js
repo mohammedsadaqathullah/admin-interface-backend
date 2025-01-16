@@ -162,6 +162,23 @@ app.get('/users', async (req, res) => {
     }
 });
 
+// Endpoint to Fetch User by ID
+app.get('/users/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const user = await User.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch user', details: error.message });
+    }
+});
+
 // Endpoint to Add a User
 app.post('/users', async (req, res) => {
     const { _id, profile, jobRole, experience, workLocation, salaryLPA, descriptionOne, descriptionTwo, jobs } = req.body;
